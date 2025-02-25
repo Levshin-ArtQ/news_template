@@ -130,12 +130,26 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       }
 
-      .news-image {
+      .image-container {
+        position: relative;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        display: flex;
+      }
+      
+      .image {
         width: 100%;
         height: auto;
         margin-bottom: 20px;
       }
 
+      .image-text{
+        position: absolute;
+        display: flex;
+        opacity: 0.5;
+        bacground-color: #ccc;
+      }
+      
       .news-content h1 {
         font-size: 2rem;
         margin-bottom: 10px;
@@ -294,7 +308,10 @@
 
             <p id="answer"></p>
           </div>
-          <img src="./assets/mbappe.jpg" alt="Франция vs Польша" />
+          <div class="image-container">
+            <img class="image image-mbappe" src="./assets/mbappe.jpg" alt="Франция vs Польша" />
+            <div class="image-text">Мбаппе фото с "Альянц Арена"</div>
+          </div>
         </div>
       </article>
 
