@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Новости - Референдум не состоится сегодня</title>
+    <title>Новости - Футбол</title>
     <style>
       :root {
         --currency-color-negative: #ff0000;
@@ -36,6 +36,7 @@
         position: sticky;
         top: 0;
         left: 0;
+        z-index: 1000;
       }
 
       .nav {
@@ -123,10 +124,14 @@
 
       /* Основной контент */
       main {
+        display: flex;
+        /* position: relative; */
+        flex-direction: column;
         max-width: 1080px;
         margin: 20px auto;
         padding: 20px;
         background-color: #fff;
+        border-radius: 8px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       }
 
@@ -135,37 +140,57 @@
         border-radius: 8px;
         border: 1px solid #ddd;
         display: flex;
+        margin: 20px;
+        aspect-ratio: 1/1;
+
+        z-index: 0;
       }
       
       .image {
         width: 100%;
         height: auto;
-        margin-bottom: 20px;
+        border-radius: 8px;
       }
 
       .image-text{
         position: absolute;
+        bottom: 0;
         display: flex;
-        opacity: 0.5;
-        bacground-color: #ccc;
+        opacity: 0.8;
+        background-color: #888;
+        color: white;
+        padding-left: 5px;
+        border-radius: 0 8px 8px 8px;
       }
       
+      .news-content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+      }
+
       .news-content h1 {
         font-size: 2rem;
         margin-bottom: 10px;
       }
 
       .news-content p {
+        display: flex;
         font-size: 1.1rem;
         margin-bottom: 20px;
       }
 
       /* Форма регистрации */
       .registration-form {
+        display: flex;
+        flex-direction: column;
+        /* position: relative; */
         margin-top: 30px;
         padding: 20px;
         background-color: #f9f9f9;
         border: 1px solid #ddd;
+        border-radius: 8px;
+        
       }
 
       .registration-form h2 {
@@ -174,11 +199,15 @@
       }
 
       .registration-form input {
-        width: 100%;
+        /* position: relative; */
+        /* width: 100%; */
+        display: block;
         padding: 10px;
         margin-bottom: 10px;
         border: 1px solid #ddd;
         border-radius: 4px;
+        align-self: stretch;
+
       }
 
       .registration-form button {
@@ -193,6 +222,13 @@
 
       .registration-form button:hover {
         background-color: #555;
+      }
+
+      .form-reg {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        /* padding: 20px; */
       }
 
       /* Footer */
@@ -211,7 +247,7 @@
 
       .horizontal-grid {
         display: grid;
-        grid-template-columns: 2fr 1fr;
+        grid-template-columns: 1fr;
       }
 
       footer p {
@@ -222,11 +258,25 @@
         .footer-grid {
           grid-template-columns: 1fr 1fr 1fr;
         }
+        .horizontal-grid {
+          grid-template-columns: 3fr 1fr;
+        }
+        .image-container {
+          width: 200px;
+        }
       }
 
       @media (min-width: 900px) {
         .footer-grid {
           grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+        .horizontal-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .image-container {
+          display: flex;
+          align-items: flex-end;
+          width: 70%;
         }
       }
     </style>
@@ -264,7 +314,7 @@
           <img src="" alt="" class="share-icon" />
           <span class="share-text">Профиль</span>
         </a>
-        <button href="#" class="nav-button">UOL Подписаться</button>
+        <a href="#registration" class="nav-button">UOL Подписаться</a>
       </nav>
     </header>
 
@@ -290,6 +340,8 @@
       <!-- Заголовок новости -->
       <article class="news-content">
         <h1>Франция vs Польша: Как прошел матч на Евро-2024</h1>
+        <i class="date-stamp">22 феврала 2025 года</i>
+        <div class="grid-wrapper">
         <div class="horizontal-grid">
           <div class="article-text">
             <p>
@@ -308,17 +360,19 @@
 
             <p id="answer"></p>
           </div>
+       
           <div class="image-container">
             <img class="image image-mbappe" src="./assets/mbappe.jpg" alt="Франция vs Польша" />
             <div class="image-text">Мбаппе фото с "Альянц Арена"</div>
           </div>
         </div>
+        </div>
       </article>
 
       <!-- Форма регистрации -->
-      <div class="registration-form">
+      <div id="registration" class="registration registration-form">
         <h2>Подпишитесь на наши новости</h2>
-        <form>
+        <form class="form-reg">
           <input type="text" placeholder="Имя" required />
           <input type="text" placeholder="Фамилия" required />
           <input type="email" placeholder="E-mail" required />
